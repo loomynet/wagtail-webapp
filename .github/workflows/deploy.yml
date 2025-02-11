@@ -1,11 +1,23 @@
 name: Build and Deploy to AWS ECR & App Runner
 
+# on:
+#   push:
+#     branches:
+#       - main
+
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: # Allows manual execution
 
 jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Print Message
+        run: echo "This is a manually triggered workflow!"
+
   build-and-push:
     name: Build and Push Docker Image to AWS ECR
     runs-on: ubuntu-latest
