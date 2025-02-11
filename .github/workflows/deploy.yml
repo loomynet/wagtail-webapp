@@ -82,6 +82,5 @@ jobs:
           IMAGE_TAG=${{ github.sha }}
           terraform init
           terraform plan
-          terraform import 
           terraform import aws_ecr_repository.wagtail_repo ${{ secrets.ECR_REPOSITORY }} || echo "Repository already imported"
-          terraform apply -auto-approve
+          terraform apply -auto-approve -var="image_tag=$IMAGE_TAG"
