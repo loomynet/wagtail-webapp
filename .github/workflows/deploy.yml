@@ -1,0 +1,84 @@
+name: Build and Deploy to AWS ECR & App Runner
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+on:
+  workflow_dispatch: # Allows manual execution
+
+jobs:
+
+  build-and-push:
+    name: Build and Push Docker Image to AWS ECR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to AWS ECR
+        run: |
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+      - name: Check if AWS ECR Repository Exists
+        run: |
+          REPO_NAME=${{ secrets.ECR_REPOSITORY }}
+          if ! aws ecr describe-repositories --repository-names $REPO_NAME > /dev/null 2>&1; then
+            aws ecr create-repository --repository-name $REPO_NAME
+          fi
+
+      - name: Build Docker Image
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG .
+
+      - name: Push Docker Image to AWS ECR
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:$IMAGE_TAG
+
+  deploy:
+    name: Deploy AWS App Runner
+    runs-on: ubuntu-latest
+    needs: build-and-push
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Check & Install Terraform (if needed)
+        run: |
+          if command -v terraform &> /dev/null; then
+            echo "Terraform is already installed"
+          else
+            echo "Terraform is NOT installed, installing now..."
+            wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+            sudo apt update && sudo apt install terraform
+            terraform -version
+          fi
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Plan Terraform
+        run: terraform plan
+
+      - name: Apply Terraform
+        run: terraform apply -auto-approve
