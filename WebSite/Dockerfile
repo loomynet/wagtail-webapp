@@ -7,7 +7,7 @@ ENV DJANGO_SETTINGS_MODULE=WebSite.settings
 ENV PYTHONPATH="/app"
 
 # Set the working directory inside the container
-WORKDIR /app/WebSite
+WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -25,11 +25,12 @@ RUN pip install gunicorn
 COPY . /app/
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 # Run database migrations
-RUN python manage.py migrate
+# RUN python manage.py migrate
 
+WORKDIR /app/WebSite
 # Expose the port for AWS App Runner
 EXPOSE 80
 
