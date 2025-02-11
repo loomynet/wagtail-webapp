@@ -79,19 +79,9 @@ jobs:
       - name: Initialize Terraform
         run: |
           cd terraform
+          IMAGE_TAG=${{ github.sha }}
           terraform init
-
-      - name: Plan Terraform
-        run: |
-          cd terraform
           terraform plan
-
-      - name: Import Existing ECR Repository
-        run: |
-          cd terraform
+          terraform import 
           terraform import aws_ecr_repository.wagtail_repo ${{ secrets.ECR_REPOSITORY }} || echo "Repository already imported"
-
-      - name: Apply Terraform
-        run: |
-          cd terraform
           terraform apply -auto-approve
