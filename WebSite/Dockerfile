@@ -24,7 +24,7 @@ RUN pip install gunicorn
 COPY . /app/
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 # Run database migrations
 RUN python manage.py migrate
