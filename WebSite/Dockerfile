@@ -3,6 +3,7 @@ FROM python:3.12-slim-bookworm
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH="/app"
 
 # Set the working directory inside the container
 WORKDIR /app
