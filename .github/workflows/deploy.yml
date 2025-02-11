@@ -9,14 +9,6 @@ on:
   workflow_dispatch: # Allows manual execution
 
 jobs:
-  test-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Print Message
-        run: echo "This is a manually triggered workflow!"
 
   build-and-push:
     name: Build and Push Docker Image to AWS ECR
