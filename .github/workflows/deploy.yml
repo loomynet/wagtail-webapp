@@ -6,7 +6,7 @@ name: Build and Deploy to AWS ECR & App Runner
 #       - main
 
 on:
-  workflow_dispatch: # Allows manual execution
+  workflow_dispatch:
 
 jobs:
 
