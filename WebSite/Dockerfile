@@ -27,7 +27,7 @@ COPY . /app/
 # RUN python manage.py collectstatic --noinput
 
 # Run database migrations
-RUN python manage.py migrate
+# RUN python manage.py migrate
 
 # Expose the port for AWS App Runner
 EXPOSE 80
