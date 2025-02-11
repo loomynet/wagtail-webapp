@@ -27,8 +27,8 @@ RUN python manage.py collectstatic --noinput
 # Run database migrations
 RUN python manage.py migrate
 
-# Expose the correct port for AWS App Runner
+# Expose the port for AWS App Runner
 EXPOSE 80
 
-# Start the application using Gunicorn instead of Django runserver
+# Start the application using Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:80", "WebSite.wsgi:application"]
