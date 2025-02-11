@@ -1,9 +1,5 @@
 # Ignore Virtual Environment
-mysite
-venv/
-env/
-mysite/env/
-mysite/venv/
+mysite/
 
 # Ignore Python cache and environment files
 __pycache__/
