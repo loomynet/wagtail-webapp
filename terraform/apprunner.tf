@@ -10,7 +10,7 @@ resource "aws_apprunner_service" "wagtail_service" {
       image_configuration {
         port = "80"
       }
-      image_identifier      = "${aws_ecr_repository.wagtail_repo.repository_url}:latest"
+      image_identifier      = "${aws_ecr_repository.wagtail_repo.repository_url}:${var.image_tag}"
       image_repository_type = "ECR"
     }
   }
