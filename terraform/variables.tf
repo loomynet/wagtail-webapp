@@ -18,3 +18,9 @@ variable "auto_scaling_name" {
   description = "App Runner Auto Scaling Configuration"
   default     = "Team2-Wagtail-AutoScaling"
 }
+
+variable "image_tag" {
+  description = "Tag for the ECR Docker image"
+  type        = string
+  default     = "latest"
+}
