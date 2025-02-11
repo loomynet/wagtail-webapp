@@ -1,9 +1,15 @@
-venv/
+# Ignore Virtual Environment
+mysite/
+
+# Ignore Python cache and environment files
 __pycache__/
 *.pyc
 *.pyo
-*.db
 *.sqlite3
+
+# Ignore Django static & media files
 media/
-staticfiles/
+static/
+
+# Ignore environment files
 .env
