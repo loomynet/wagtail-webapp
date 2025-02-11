@@ -88,6 +88,7 @@ jobs:
 
       - name: Import Existing ECR Repository
         run: |
+          cd terraform
           terraform import aws_ecr_repository.wagtail_repo ${{ secrets.ECR_REPOSITORY }} || echo "Repository already imported"
 
       - name: Apply Terraform
