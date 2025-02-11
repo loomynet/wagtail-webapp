@@ -86,8 +86,11 @@ jobs:
           cd terraform
           terraform plan
 
+      - name: Import Existing ECR Repository
+        run: |
+          terraform import aws_ecr_repository.wagtail_repo ${{ secrets.ECR_REPOSITORY }} || echo "Repository already imported"
+
       - name: Apply Terraform
         run: |
           cd terraform
-          terraform import ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}
           terraform apply -auto-approve
