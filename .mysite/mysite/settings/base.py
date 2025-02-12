@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
+    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -172,6 +172,8 @@ WAGTAILSEARCH_BACKENDS = {
         "BACKEND": "wagtail.search.backends.database",
     }
 }
+
+ALLOWED_HOSTS = [".awsapprunner.com", "127.0.0.1", "localhost", "0.0.0.0"]
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
