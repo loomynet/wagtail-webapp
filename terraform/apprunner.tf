@@ -9,6 +9,10 @@ resource "aws_apprunner_service" "wagtail_service" {
     image_repository {
       image_configuration {
         port = "8000"
+
+        environment_variable {
+          APP_RUNNER_URL = aws_apprunner_service.wagtail_service.service_url
+        }
       }
       image_identifier      = "${aws_ecr_repository.wagtail_repo.repository_url}:${var.image_tag}" 
       # image_indentifier   = "597765856364.dkr.ecr.eu-west-1.amazonaws.com/nginx-test:latest"
@@ -19,10 +23,6 @@ resource "aws_apprunner_service" "wagtail_service" {
   instance_configuration {
     cpu    = "1024"
     memory = "2048"
-
-    environment_variable {
-      APP_RUNNER_URL = aws_apprunner_service.wagtail_service.service_url
-    }
   }
 
   health_check_configuration {
