@@ -19,6 +19,11 @@ resource "aws_apprunner_service" "wagtail_service" {
   instance_configuration {
     cpu    = "1024"
     memory = "2048"
+
+    environment_variable {
+      name  = "APP_RUNNER_URL"
+      value = aws_apprunner_service.wagtail_service.service_url
+    }
   }
 
   health_check_configuration {
