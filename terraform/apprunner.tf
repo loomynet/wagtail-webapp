@@ -10,7 +10,7 @@ resource "aws_apprunner_service" "wagtail_service" {
       image_configuration {
         port = "80"
         runtime_environment_variables = {
-          DJANGO_SETTINGS_MODULE = "WebSite.settings"
+          DJANGO_SETTINGS_MODULE = "mysite.settings"
         }
       }
       image_identifier      = "${aws_ecr_repository.wagtail_repo.repository_url}:${var.image_tag}"
