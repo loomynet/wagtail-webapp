@@ -46,7 +46,7 @@ jobs:
       - name: Push Docker Image to AWS ECR
         run: |
           IMAGE_TAG=${{ github.sha }}
-          docker push "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:wagtail:$IMAGE_TAG"
+          docker push "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:wagtail"
 
   deploy:
     name: Deploy AWS App Runner
