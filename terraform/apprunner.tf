@@ -25,6 +25,5 @@ resource "aws_apprunner_service" "wagtail_service" {
     protocol = "HTTP"
   }
 
-  APP_RUNNER_URL = aws_apprunner_service.wagtail_service.service_url
   auto_scaling_configuration_arn = aws_apprunner_auto_scaling_configuration_version.auto_scaling.arn
 }
