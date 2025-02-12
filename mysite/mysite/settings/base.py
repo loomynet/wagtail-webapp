@@ -182,3 +182,17 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 # if untrusted users are allowed to upload files -
 # see https://docs.wagtail.org/en/stable/advanced_topics/deploying.html#user-uploaded-files
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
+
+# The App Runner URL is allowed
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    os.getenv("APP_RUNNER_URL", ""),  # App Runner URL
+]
+
+# CSRF requests from the App Runner domain is allowed
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1",
+    "http://localhost",
+    os.getenv("APP_RUNNER_URL", ""),
+]
