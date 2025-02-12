@@ -21,8 +21,7 @@ resource "aws_apprunner_service" "wagtail_service" {
     memory = "2048"
 
     environment_variable {
-      name  = "APP_RUNNER_URL"
-      value = aws_apprunner_service.wagtail_service.service_url
+      APP_RUNNER_URL = aws_apprunner_service.wagtail_service.service_url
     }
   }
 
