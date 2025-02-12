@@ -187,12 +187,12 @@ WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'tx
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    os.getenv("APP_RUNNER_URL", ""),  # App Runner URL
+    ".awsapprunner.com",
 ]
 
 # CSRF requests from the App Runner domain is allowed
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1",
     "http://localhost",
-    os.getenv("APP_RUNNER_URL", ""),
+    ".awsapprunner.com",
 ]
