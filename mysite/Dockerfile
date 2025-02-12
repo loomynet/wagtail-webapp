@@ -12,7 +12,6 @@ EXPOSE 80
 # 2. Set PORT variable that is used by Gunicorn. This should match "EXPOSE"
 #    command.
 ENV PYTHONUNBUFFERED=1 \
-    PORT=80
 
 # Install system packages required by Wagtail and Django.
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
@@ -57,5 +56,5 @@ RUN python manage.py collectstatic --noinput --clear
 #   PRACTICE. The database should be migrated manually or using the release
 #   phase facilities of your hosting platform. This is used only so the
 #   Wagtail instance can be started with a simple "docker run" command.
-CMD ["gunicorn", "--bind", "0.0.0.0:$PORT", "mysite.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:80", "mysite.wsgi:application"]
 
