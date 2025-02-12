@@ -39,9 +39,9 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t "wagtail" -f mysite/Dockerfile mysite/
-          docker tag "wagtail" "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}"
-          docker tag "wagtail" "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}"
+          docker build -t wagtail -f mysite/Dockerfile mysite/
+          docker tag wagtail "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}"
+          docker tag wagtail "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}"
           
       - name: Push Docker Image to AWS ECR
         run: |
