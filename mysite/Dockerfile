@@ -61,4 +61,3 @@ CMD set -xe; \
     DJANGO_SUPERUSER_PASSWORD=$ADMIN_PASSWORD \
     python manage.py createsuperuser --noinput || echo "Superuser already exists."; \
     gunicorn mysite.wsgi:application
-
