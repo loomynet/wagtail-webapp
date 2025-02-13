@@ -14,7 +14,7 @@ while attempts > 0:
         User = get_user_model()
         break
     except (ImproperlyConfigured, OperationalError) as e:
-        print(f"⚠️ Database not ready. Retrying in 10 seconds... ({attempts} attempts left)")
+        print(f"Database not ready. Retrying in 10 seconds... ({attempts} attempts left)")
         time.sleep(10)
         attempts -= 1
 

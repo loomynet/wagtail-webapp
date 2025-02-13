@@ -56,7 +56,9 @@ USER wagtail
 CMD set -xe; \
     python manage.py migrate --noinput; \
     python manage.py collectstatic --noinput --clear; \
-    python manage.py shell -c "import django; django.setup()"; \
-    python initadmin.py; \
+    DJANGO_SUPERUSER_USERNAME=$ADMIN_USERNAME \
+    DJANGO_SUPERUSER_EMAIL=$ADMIN_EMAIL \
+    DJANGO_SUPERUSER_PASSWORD=$ADMIN_PASSWORD \
+    python manage.py createsuperuser --noinput || echo "Superuser already exists."; \
     gunicorn mysite.wsgi:application
 
