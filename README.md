@@ -1,6 +1,6 @@
 # Wagtail Web App Deployment Automation
 
-## Documentation: https://docs.google.com/document/d/1pGZhLO8rN69eQyHd8a6YEKhT17V5GSBGqogni_wwsXQ/edit?usp=sharing
+### Documentation: https://docs.google.com/document/d/1pGZhLO8rN69eQyHd8a6YEKhT17V5GSBGqogni_wwsXQ/edit?usp=sharing
 
 ## Project Overview
 This project focuses on automating the development, deployment, and maintenance of a Wagtail-based website for a tech start-up. The website is powered by Wagtail CMS and deployed using AWS App Runner with a fully automated CI/CD pipeline built on GitHub Actions and Terraform.
