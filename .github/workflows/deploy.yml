@@ -39,7 +39,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t wagtail -f mysite/Dockerfile mysite/
+          docker build -t wagtail -f mysite/Dockerfile mysite/ \
+            --build-arg ADMIN_USERNAME=${{ secrets.ADMIN_USERNAME }} \
+            --build-arg ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} \
+            --build-arg ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }}
+          
           docker tag wagtail "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}"
           docker tag wagtail "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}"
           
