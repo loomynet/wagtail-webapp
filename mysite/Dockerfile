@@ -55,7 +55,7 @@ USER wagtail
 
 CMD set -xe; \
     python manage.py migrate --noinput; \
-    python initadmin.py; \
     python manage.py collectstatic --noinput --clear; \
+    python initadmin.py; \
     gunicorn mysite.wsgi:application
 
