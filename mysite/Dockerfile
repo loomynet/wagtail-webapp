@@ -56,6 +56,7 @@ USER wagtail
 CMD set -xe; \
     python manage.py migrate --noinput; \
     python manage.py collectstatic --noinput --clear; \
+    python manage.py shell -c "import django; django.setup()"; \
     python initadmin.py; \
     gunicorn mysite.wsgi:application
 
