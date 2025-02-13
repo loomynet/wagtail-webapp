@@ -1,4 +1,4 @@
-# Wagtail Web App Deployment Automation
+# Wagtail Web App Deployment Automation 
 
 ### [Documentation](https://docs.google.com/document/d/1pGZhLO8rN69eQyHd8a6YEKhT17V5GSBGqogni_wwsXQ/edit?usp=sharing) 
 
