@@ -1,12 +1,9 @@
 name: Build and Deploy to AWS ECR & App Runner
 
-# on:
-#   push:
-#     branches:
-#       - main
-
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
 
