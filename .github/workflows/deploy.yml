@@ -10,7 +10,7 @@ name: Build and Deploy to AWS ECR & App Runner
 #      - 'terraform/**'
 
 on:
-  workflow_run:
+  workflow_dispatch:
 
 jobs:
 

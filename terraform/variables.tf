@@ -1,6 +1,5 @@
 variable "aws_region" {
-  description = "AWS region"
-  default     = "eu-west-1"
+  default = "eu-west-1"
 }
 
 variable "app_runner_role_arn" {
@@ -9,14 +8,21 @@ variable "app_runner_role_arn" {
   default     = "arn:aws:iam::597765856364:role/service-role/Team2AppRunnerAccessRole"
 }
 
+variable "app_runner_name" {
+  default = "Team2-WagtailCMS"
+}
+
 variable "ecr_repository_name" {
-  description = "ECR Repository Name"
-  default     = "team2-wagtail-cms"
+  default = "team2-wagtail-cms"
 }
 
 variable "auto_scaling_name" {
   description = "App Runner Auto Scaling Configuration"
   default     = "Team2-Wagtail-AutoScaling"
+}
+
+variable "s3_bucket_name" {
+  default = "feb-2025-team2-bucket"
 }
 
 variable "image_tag" {

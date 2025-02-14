@@ -1,5 +1,5 @@
 resource "aws_apprunner_service" "wagtail_service" {
-  service_name = "Team2-WagtailCMS"
+  service_name = var.app_runner_name
 
   source_configuration {
     authentication_configuration {
