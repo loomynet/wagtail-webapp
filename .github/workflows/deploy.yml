@@ -1,12 +1,16 @@
 name: Build and Deploy to AWS ECR & App Runner
 
+# Uncomment this part so workflows triggers on push, for now it's manual.
+#on:
+#  push:
+#    branches:
+#      - main
+#    paths:
+#      - 'mysite/**'
+#      - 'terraform/**'
+
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'mysite/**'
-      - 'terraform/**'
+  workflow_run:
 
 jobs:
 
