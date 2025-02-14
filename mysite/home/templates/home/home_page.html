@@ -1,4 +1,3 @@
-<!--
 {% extends "base.html" %}
 {% load static %}
 
@@ -9,10 +8,12 @@
 {% comment %}
 Delete the line below if you're just getting started and want to remove the welcome screen!
 {% endcomment %}
+<!--
 <link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
+-->
 
 {% comment %}
 Delete the line below if you're just getting started and want to remove the welcome screen!
@@ -20,16 +21,4 @@ Delete the line below if you're just getting started and want to remove the welc
 {% include 'home/welcome_page.html' %}
 
 {% endblock content %}
--->
 
-{% extends "base.html" %}
-
-<!-- load wagtailcore_tags by adding this: -->
-{% load wagtailcore_tags %}
-
-{% block body_class %}template-homepage{% endblock %}
-
-<!-- replace everything below with: -->
-{% block content %}
-    {{ page.body|richtext }}
-{% endblock %}
