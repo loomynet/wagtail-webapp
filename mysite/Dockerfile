@@ -54,6 +54,7 @@ ENV ADMIN_PASSWORD=$ADMIN_PASSWORD
 USER wagtail
 
 CMD set -xe; \
+    python manage.py makemigrations; \
     python manage.py migrate --noinput; \
     python manage.py collectstatic --noinput --clear; \
     DJANGO_SUPERUSER_USERNAME=$ADMIN_USERNAME \

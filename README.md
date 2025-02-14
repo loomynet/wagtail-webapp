@@ -49,10 +49,10 @@ aws configure
 docker build -t wagtail-app .
 docker run -p 8000:8000 wagtail-app
 ```
-## Add secrets
+### Add secrets
 Add all the necessary GitHub Actions secrets in your repository settings.
 
-## Change Terraform configuration
+### Change Terraform configuration
 1. Go to variables.tf and change values to what you need.
 2. Go to provider.tf and set up the s3 backend for terraform to store the terraform.tfstate file. (s3 have to be created manually in aws)
 3. Also you can configure autoscaling for apprunner in autoscaling.tf file.
